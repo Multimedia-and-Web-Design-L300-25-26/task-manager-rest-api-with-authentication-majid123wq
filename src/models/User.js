@@ -1,19 +1,21 @@
 import mongoose from "mongoose";
 
+const userSchema = new mongoose.Schema(
+  {
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+      trim: true
+    },
+    password: {
+      type: String,
+      required: true,
+      minlength: 6
+    }
+  },
+  { timestamps: true }
+);
 
-// Create User schema
-// Fields:
-// - name (String, required)
-// - email (String, required, unique)
-// - password (String, required, minlength 6)
-// - createdAt (default Date.now)
-
-
-
-const userSchema = new mongoose.Schema({
-  // Students implement
-});
-
-const User = mongoose.model("User", userSchema);
-
-export default User;
+export default mongoose.model("User", userSchema);
